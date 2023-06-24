@@ -3,11 +3,14 @@ const {userController} = require("./routes/user.routes")
 const {notesController} = require("./routes/notes.routes")
 const {connection} = require("./config/db")
 const {authenticate} = require('./middlewares/authentication')
+const cors = require('cors')
 
 const app = express();
 require('dotenv').config()
 
 app.use(express.json())
+
+app.use(cors())
 
 app.get("/",(req,res)=>{
     res.send("Home Page")

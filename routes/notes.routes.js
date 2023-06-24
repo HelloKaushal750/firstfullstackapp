@@ -8,7 +8,7 @@ const notesController = Router();
 
 notesController.get("/", async (req, res) => {
   const notes = await NoteModel.find({ userId: req.body.userId });
-  res.send(notes);
+  res.json(notes);
 });
 
 notesController.post("/create", async (req, res) => {
@@ -21,7 +21,7 @@ notesController.post("/create", async (req, res) => {
   });
   try {
     await notes.save();
-    res.send("Note Created");
+    res.json({ message: "Note Created" });
   } catch (error) {
     console.log(error);
   }
@@ -34,11 +34,12 @@ notesController.delete("/delete/:noteId", async (req, res) => {
     userId: req.body.userId,
   });
   if (deletedNote) {
-    res.send("Deleted Successfully");
+    res.json({ message: "Deleted Successfully" });
   } else {
-    res.send(
-      "You are not allow to delete this notes because its somebody else notes"
-    );
+    res.json({
+      message:
+        "You are not allow to delete this notes because its somebody else notes",
+    });
   }
 });
 
@@ -52,11 +53,12 @@ notesController.patch("/edit/:noteId", async (req, res) => {
     { ...req.body }
   );
   if (updatedNote) {
-    res.send("Updated Successfully");
+    res.json({ message: "Updated Successfully" });
   } else {
-    res.send(
-      "You are not allow to update this notes because its somebody else notes"
-    );
+    res.json({
+      message:
+        "You are not allow to update this notes because its somebody else notes",
+    });
   }
 });
 

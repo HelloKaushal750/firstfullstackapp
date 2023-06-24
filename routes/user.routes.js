@@ -17,7 +17,7 @@ userController.post("/signup", (req, res) => {
       password: hash,
       age,
     });
-    res.send("Signup successful");
+    res.json({message:"Signup successful"});
   });
 });
 
@@ -31,9 +31,9 @@ userController.post("/login", async (req, res) => {
     }
     if (result) {
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-      res.send({message:"Login Successful",token})
+      res.json({message:"Login Successful",token})
     } else {
-      res.send("Invalid credentials, please signup if you haven't");
+      res.json({message:"Invalid credentials, please signup if you haven't"});
     }
   });
 });
