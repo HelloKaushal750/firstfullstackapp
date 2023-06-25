@@ -22,12 +22,8 @@ app.use(authenticate)
 
 app.use("/notes", notesController)
 
-app.listen(process.env.PORT,async ()=>{
-    try {
-        await connection;
-        console.log("Connected to DB");
-    } catch (error) {
-        console.log("Error connecting to DB");
-        console.log(error);
-    }
+connection.then(()=>{
+    app.listen(process.env.PORT,()=>{
+        console.log("Connected to Database");
+    })
 })
