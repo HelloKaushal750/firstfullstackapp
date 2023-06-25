@@ -4,7 +4,7 @@ const {notesController} = require("./routes/notes.routes")
 const {connection} = require("./config/db")
 const {authenticate} = require('./middlewares/authentication')
 const cors = require('cors')
-
+//hello
 const app = express();
 require('dotenv').config()
 
