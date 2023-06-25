@@ -12,11 +12,12 @@ userController.post("/signup", (req, res) => {
     if (err) {
       res.send("Something went wrong, please try again later");
     }
-    const user = UserModel.create({
+    const user = new UserModel({
       email,
       password: hash,
       age,
     });
+    await user.save();
     res.json({message:"Signup successful"});
   });
 });
