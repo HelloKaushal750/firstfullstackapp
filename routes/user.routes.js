@@ -32,9 +32,9 @@ userController.post("/login", async (req, res) => {
     }
     if (result) {
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-      res.json({message:"Login Successful",token})
+      res.status(200).json({message:"Login Successful",token})
     } else {
-      res.json({message:"Invalid credentials, please signup if you haven't"});
+      res.status(404).json({message:"Invalid credentials, please signup if you haven't"});
     }
   });
 });
