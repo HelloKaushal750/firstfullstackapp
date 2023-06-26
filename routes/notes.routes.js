@@ -11,8 +11,15 @@ notesController.get("/", async (req, res) => {
   res.json(notes);
 });
 
+notesController.get("/:noteId", async (req, res) => {
+  const {noteId} = req.params
+  const notes = await NoteModel.find({ _id: noteId });
+  res.json(notes);
+});
+
 notesController.post("/create", async (req, res) => {
   const { Heading, Note, Tag, userId } = req.body;
+  console.log(req.body)
   const notes = new NoteModel({
     Heading,
     Note,
